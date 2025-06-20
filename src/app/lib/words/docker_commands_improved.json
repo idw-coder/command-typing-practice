@@ -1,0 +1,82 @@
+[
+  {
+    "command": "docker ps",
+    "description": "現在実行中のDockerコンテナの一覧を表示します。コンテナID、イメージ名、実行時間、ステータス、ポートマッピングなどの情報が確認できます。"
+  },
+  {
+    "command": "docker run",
+    "description": "Dockerイメージから新しいコンテナを作成して実行します。ポートマッピング、環境変数、ボリュームマウントなどのオプションを指定できます。"
+  },
+  {
+    "command": "docker build",
+    "description": "DockerfileからDockerイメージをビルドします。-tオプションでタグ名を指定し、コンテキストパスを指定してイメージを作成します。"
+  },
+  {
+    "command": "docker push",
+    "description": "ローカルのDockerイメージをDocker Hubやプライベートレジストリなどのリモートリポジトリにアップロードします。"
+  },
+  {
+    "command": "docker pull",
+    "description": "Docker HubやプライベートレジストリからDockerイメージをローカル環境にダウンロードします。指定されたタグのイメージを取得します。"
+  },
+  {
+    "command": "docker stop",
+    "description": "実行中のDockerコンテナを停止します。コンテナIDまたはコンテナ名を指定して、グレースフルシャットダウンを実行します。"
+  },
+  {
+    "command": "docker exec",
+    "description": "実行中のDockerコンテナ内で新しいコマンドを実行します。-itオプションと組み合わせて対話的にコンテナ内に入ることができます。"
+  },
+  {
+    "command": "docker-compose build",
+    "description": "docker-compose.ymlファイルに定義されたサービスのDockerイメージをビルドします。複数のサービスを一括でビルドできます。"
+  },
+  {
+    "command": "docker-compose up",
+    "description": "docker-compose.ymlファイルに定義された全てのサービスを起動します。-dオプションでバックグラウンド実行、--buildオプションで強制リビルドが可能です。"
+  },
+  {
+    "command": "docker-compose down",
+    "description": "docker-compose upで起動したサービスを停止し、コンテナ、ネットワークを削除します。-vオプションでボリュームも削除できます。"
+  },
+  {
+    "command": "docker-compose restart",
+    "description": "docker-compose.ymlで定義されたサービスを再起動します。設定変更後の反映や、サービスの問題解決に使用します。"
+  },
+  {
+    "command": "docker-compose start",
+    "description": "停止中のdocker-composeサービスを開始します。docker-compose upとは異なり、既存のコンテナを再開始します。"
+  },
+  {
+    "command": "docker-compose stop",
+    "description": "実行中のdocker-composeサービスを停止します。コンテナは削除されず、docker-compose startで再開できます。"
+  },
+  {
+    "command": "docker-compose ps",
+    "description": "docker-compose.ymlで定義されたサービスの現在の状態を表示します。各サービスのステータス、ポート情報などが確認できます。"
+  },
+  {
+    "command": "docker-compose logs",
+    "description": "docker-composeで管理されているサービスのログを表示します。特定のサービス名を指定して個別のログも確認できます。"
+  },
+  {
+    "command": "docker-compose logs -f",
+    "description": "docker-composeサービスのログをリアルタイムで監視します。新しいログエントリが自動的に表示され続けます。"
+  },
+  {
+    "command": "docker-compose logs -f --tail 10",
+    "description": "docker-composeサービスのログの最新10行を表示し、その後リアルタイムでログを監視します。デバッグ時に最新の状況を素早く確認できます。"
+  },
+  {
+    "command": "docker-compose logs -f --tail 100",
+    "description": "docker-composeサービスのログの最新100行を表示し、その後リアルタイムでログを監視します。より多くの履歴を確認したい場合に使用します。"
+  },
+  {
+    "command": "docker-compose exec",
+    "description": "実行中のdocker-composeサービス内でコマンドを実行します。サービス名を指定して、そのコンテナ内でシェルやその他のコマンドを実行できます。"
+  },
+  {
+    "command": "docker-compose exec -it",
+    "description": "docker-composeサービス内で対話的にコマンドを実行します。-itオプションによりターミナルの対話機能が有効になり、シェルセッションが開始できます。"
+  }
+]
