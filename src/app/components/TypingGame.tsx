@@ -13,7 +13,7 @@ type WordEntry = {
 // ミス1回あたりの減点（0.5点）
 const MISS_PENALTY = 0.5;
 
-export default function TypingGame({ wordList }: { wordList: WordEntry[] }) {
+export default function TypingGame() {
   // シャッフルされたリスト
   const [shuffledList, setShuffledList] = useState<WordEntry[]>([]);
   // 現在の単語インデックス（何番目の問題か）
@@ -109,7 +109,7 @@ export default function TypingGame({ wordList }: { wordList: WordEntry[] }) {
 
       {isGameOver ? (
         <div className="text-center">
-          <p className="text-2xl font-bold text-red-600 mb-2">⌛ Time's up!</p>
+          <p className="text-2xl font-bold text-red-600 mb-2">⌛ Time&apos;s up!</p>
           <p className="text-xl mb-1">スコア（文字ベース）: {score.toFixed(1)} 点</p>
           <p className="text-md text-gray-600">ミス数: {mistakes}</p>
         </div>
