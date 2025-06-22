@@ -124,18 +124,41 @@ export default function TypingGame() {
             🛈 {currentEntry?.description}
           </p>
 
-          {/* ユーザーがタイプ中の文字 */}
+          {/* タイピング入力表示エリア */}
           <div className="mb-4">
-            <p className="text-gray-700">Typed:</p>
-            <p className="text-xl font-mono text-green-700">{typed}</p>
+            <p className="text-gray-700 mb-2">入力:</p>
+            <div className={`
+              min-h-[60px] p-4 border-2 rounded-lg font-mono text-xl
+              ${isTyping 
+                ? 'border-blue-500 bg-blue-50 shadow-md' 
+                : 'border-gray-300 bg-gray-50'
+              }
+              ${!isTyping ? 'animate-pulse' : ''}
+            `}>
+              {typed ? (
+                <span className="text-green-600">{typed}</span>
+              ) : (
+                <span className="text-gray-400 italic">
+                  {!isTyping ? 'キーボードで入力開始...' : ''}
+                </span>
+              )}
+              {isTyping && <span className="animate-pulse text-blue-500">|</span>}
+            </div>
           </div>
 
-          {/* ヒント表示 */}
-          {!isTyping && (
-            <div className="text-sm text-gray-400 italic">
-              タイピングを始めてください（キーボード入力で開始）
+          {/* 進捗表示 */}
+          <div className="mb-4">
+            <div className="flex justify-between text-sm text-gray-600 mb-1">
+              <span>進捗: {inputCharIndex} / {currentCommand.length}</span>
+              <span>{Math.round((inputCharIndex / currentCommand.length) * 100)}%</span>
             </div>
-          )}
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div 
+                className="bg-blue-500 h-2 rounded-full transition-all duration-200"
+                style={{ width: `${(inputCharIndex / currentCommand.length) * 100}%` }}
+              ></div>
+            </div>
+          </div>
 
           {/* スコア表示 */}
           <div className="mt-4 text-sm text-gray-600">
