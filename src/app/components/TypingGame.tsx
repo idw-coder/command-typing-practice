@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Container, GitBranch, Code, Wrench, Database, Play, RotateCcw, Clock, Target, AlertCircle, CheckCircle } from 'lucide-react';
+import { Container, GitBranch, Code, Wrench, Database, Play, RotateCcw, Clock, Target, AlertCircle, CheckCircle, TrendingUp, Table } from 'lucide-react';
+import * as wanakana from 'wanakana';
 
 // JSONファイルをインポート
 import dockerCommands from '../lib/words/docker_commands_improved.json';
@@ -10,6 +11,7 @@ import javascriptMethods from '../lib/words/javascript_methods.json';
 import laravelCommands from '../lib/words/laravel_commands.json';
 import phpFunctions from '../lib/words/php_functions.json';
 import sqlCommands from '../lib/words/sql_commands.json';
+import marketingTerms from '../lib/words/marketing_terms.json';
 
 // データ型の定義
 type WordEntry = {
@@ -45,15 +47,21 @@ const categories = {
   },
   php: { 
     name: 'PHP', 
-    icon: Database,
+    icon: Code,
     data: phpFunctions as WordEntry[], 
     color: 'bg-purple-100 border-purple-300 text-purple-800' 
   },
   sql: { 
     name: 'SQL', 
-    icon: Database,
+    icon: Table,
     data: sqlCommands as WordEntry[], 
     color: 'bg-green-100 border-green-300 text-green-800' 
+  },
+  marketing: {
+    name: 'マーケティング',
+    icon: TrendingUp,
+    data: marketingTerms as WordEntry[],
+    color: 'bg-pink-100 border-pink-300 text-pink-800'
   }
 };
 
@@ -83,6 +91,8 @@ export default function TypingGame() {
   const [isGameOver, setIsGameOver] = useState(false);
 
   const [inputStatus, setInputStatus] = useState<'normal' | 'success' | 'error'>('normal');
+
+  const isJapaneseCategory = selectedCategory === 'marketing';
 
   // シャッフル関数（Fisher-Yatesアルゴリズム）
   const shuffleList = (list: WordEntry[]): WordEntry[] => {
@@ -125,6 +135,22 @@ export default function TypingGame() {
   const currentEntry = shuffledList[currentWordIndex];
   const currentCommand = currentEntry?.command ?? '';
 
+  // 表示用ローマ字（長音は必ず'-'、連続母音も'-'に置換）
+  let displayRomajiCommand = isJapaneseCategory
+    ? wanakana.toRomaji(currentCommand ?? '', { customKanaMapping: { 'ー': '-' } })
+    : currentCommand ?? '';
+  displayRomajiCommand = isJapaneseCategory
+    ? displayRomajiCommand.replace(/([aeiou])\1+/g, '$1-')
+    : displayRomajiCommand;
+  // 判定用ローマ字（母音も許容）
+  const romajiCommand = isJapaneseCategory ? wanakana.toRomaji(currentCommand ?? '') : currentCommand ?? '';
+  const altRomajiCommand = isJapaneseCategory
+    ? romajiCommand.replace(/-/g, (_, offset) => {
+        const prev = romajiCommand[offset - 1];
+        return prev && 'aeiou'.includes(prev) ? prev : '';
+      })
+    : romajiCommand;
+
   // タイマー処理：1秒ごとに残り時間を更新
   useEffect(() => {
     if (!gameStarted || !isTyping || isGameOver) return;
@@ -158,6 +184,45 @@ export default function TypingGame() {
         if (typed.length > 0) {
           setTyped(prev => prev.slice(0, -1));
           setInputCharIndex(prev => Math.max(0, prev - 1));
+        }
+        return;
+      }
+
+      if (isJapaneseCategory) {
+        // ローマ字で進捗判定（長音は-または母音どちらでもOK、大文字小文字区別なし）
+        const nextTyped = (typed + char).toLowerCase();
+        const expected = displayRomajiCommand.slice(0, nextTyped.length).toLowerCase();
+        let isCorrect = true;
+        for (let i = 0; i < nextTyped.length; i++) {
+          if (displayRomajiCommand[i] === '-') {
+            const prev = displayRomajiCommand[i - 1];
+            if (!(nextTyped[i] === '-' || (prev && 'aeiou'.includes(prev) && nextTyped[i] === prev))) {
+              isCorrect = false;
+              break;
+            }
+          } else if (nextTyped[i]?.toLowerCase() !== displayRomajiCommand[i]?.toLowerCase()) {
+            isCorrect = false;
+            break;
+          }
+        }
+        if (char.length === 1 && isCorrect) {
+          setTyped(prev => prev + char);
+          const nextIndex = inputCharIndex + 1;
+          if (nextIndex === displayRomajiCommand.length) {
+            setScore((prev) => prev + displayRomajiCommand.length);
+            setCurrentWordIndex((prev) => (prev + 1) % shuffledList.length);
+            setTyped('');
+            setInputCharIndex(0);
+            setInputStatus('success');
+            setTimeout(() => setInputStatus('normal'), 300);
+          } else {
+            setInputCharIndex(nextIndex);
+          }
+        } else if (char.length === 1) {
+          setMistakes((prev) => prev + 1);
+          setScore((prev) => Math.max(0, prev - MISS_PENALTY));
+          setInputStatus('error');
+          setTimeout(() => setInputStatus('normal'), 300);
         }
         return;
       }
@@ -278,15 +343,30 @@ export default function TypingGame() {
         <>
           {/* タイピング入力表示エリア */}
           <div className="mb-6">
-            <div
-              className={`min-h-[80px] p-6 rounded-lg font-mono text-2xl shadow-inner transition-colors duration-200 border-2
-                ${inputStatus === 'success' ? 'bg-green-50 border-green-400' : inputStatus === 'error' ? 'bg-red-50 border-red-400' : 'bg-gray-50 border-blue-300'}`}
-            >
-              <span>
-                <span className="text-green-600 bg-green-100 px-1 rounded">{typed}</span>
-                <span className="text-gray-400">{currentCommand.slice(typed.length)}</span>
-              </span>
-            </div>
+            {isJapaneseCategory ? (
+              <>
+                <div className="text-sm text-gray-500 mb-1 text-center">{currentCommand}</div>
+                <div
+                  className={`min-h-[80px] p-6 rounded-lg font-mono text-2xl shadow-inner transition-colors duration-200 border-2 text-center
+                    ${inputStatus === 'success' ? 'bg-green-50 border-green-400' : inputStatus === 'error' ? 'bg-red-50 border-red-400' : 'bg-gray-50 border-blue-300'}`}
+                  >
+                    <span>
+                      <span className="text-green-600 bg-green-100 px-1 rounded">{typed}</span>
+                      <span className="text-gray-400">{displayRomajiCommand.slice(typed.length)}</span>
+                    </span>
+                  </div>
+              </>
+            ) : (
+              <div
+                className={`min-h-[80px] p-6 rounded-lg font-mono text-2xl shadow-inner transition-colors duration-200 border-2
+                  ${inputStatus === 'success' ? 'bg-green-50 border-green-400' : inputStatus === 'error' ? 'bg-red-50 border-red-400' : 'bg-gray-50 border-blue-300'}`}
+              >
+                <span>
+                  <span className="text-green-600 bg-green-100 px-1 rounded">{typed}</span>
+                  <span className="text-gray-400">{currentCommand.slice(typed.length)}</span>
+                </span>
+              </div>
+            )}
           </div>
 
           {/* 進捗表示 */}
