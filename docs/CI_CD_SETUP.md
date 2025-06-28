@@ -108,7 +108,7 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out
+          local-dir: ./out/
           server-dir: /command-typing-practice/
 ```
 
