@@ -47,19 +47,15 @@ export default function WanakanaUsagePage() {
         </section>
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">基本的な使い方</h2>
-          <pre className="bg-gray-100 p-4 rounded text-sm overflow-x-auto">import * as wanakana from 'wanakana';
+          <pre className="bg-gray-100 p-4 rounded text-sm overflow-x-auto">{`import * as wanakana from 'wanakana';
 
-// ひらがな→ローマ字
 wanakana.toRomaji('ありがとう'); // "arigatou"
 
-// カタカナ→ローマ字
 wanakana.toRomaji('コンバージョン'); // "konba-jon"
 
-// ローマ字→ひらがな
 wanakana.toHiragana('arigatou'); // "ありがとう"
 
-// ローマ字→カタカナ
-wanakana.toKatakana('arigatou'); // "アリガトウ"</pre>
+wanakana.toKatakana('arigatou'); // "アリガトウ"`}</pre>
         </section>
         <section className="mb-10">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">タイピングゲームでの活用例</h2>
@@ -83,7 +79,7 @@ wanakana.toKatakana('arigatou'); // "アリガトウ"</pre>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">注意点・デメリット</h2>
           <ul>
             <li>英語や記号、数字はそのまま変換される</li>
-            <li>「ん」の後に母音や「y」が続く場合のn/n'の扱いに注意</li>
+            <li>「ん」の後に母音や「y」が続く場合のn/n&apos;の扱いに注意</li>
             <li>長音の表現（- or 母音）は用途に応じて調整が必要</li>
             <li>カタカナ語の外来語表記は複数のローマ字表現があり得る</li>
           </ul>

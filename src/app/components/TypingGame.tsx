@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Container, GitBranch, Code, Wrench, Database, Play, RotateCcw, Clock, Target, AlertCircle, CheckCircle, TrendingUp, Table } from 'lucide-react';
+import { Container, GitBranch, Code, Wrench, Play, RotateCcw, Clock, Target, AlertCircle, CheckCircle, TrendingUp, Table } from 'lucide-react';
 import * as wanakana from 'wanakana';
 
 // JSONファイルをインポート
@@ -142,8 +142,6 @@ export default function TypingGame() {
   displayRomajiCommand = isJapaneseCategory
     ? displayRomajiCommand.replace(/([aeiou])\1+/g, '$1-')
     : displayRomajiCommand;
-  // 判定用ローマ字（母音も許容）
-  const romajiCommand = isJapaneseCategory ? wanakana.toRomaji(currentCommand ?? '') : currentCommand ?? '';
 
   // タイマー処理：1秒ごとに残り時間を更新
   useEffect(() => {
