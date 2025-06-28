@@ -9,6 +9,7 @@ import gitCommands from '../lib/words/git_commands.json';
 import javascriptMethods from '../lib/words/javascript_methods.json';
 import laravelCommands from '../lib/words/laravel_commands.json';
 import phpFunctions from '../lib/words/php_functions.json';
+import sqlCommands from '../lib/words/sql_commands.json';
 
 // データ型の定義
 type WordEntry = {
@@ -47,6 +48,12 @@ const categories = {
     icon: Database,
     data: phpFunctions as WordEntry[], 
     color: 'bg-purple-100 border-purple-300 text-purple-800' 
+  },
+  sql: { 
+    name: 'SQL', 
+    icon: Database,
+    data: sqlCommands as WordEntry[], 
+    color: 'bg-green-100 border-green-300 text-green-800' 
   }
 };
 
