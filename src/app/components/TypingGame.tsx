@@ -82,6 +82,8 @@ export default function TypingGame() {
   const [timeLeft, setTimeLeft] = useState(60);
   const [isGameOver, setIsGameOver] = useState(false);
 
+  const [inputStatus, setInputStatus] = useState<'normal' | 'success' | 'error'>('normal');
+
   // シャッフル関数（Fisher-Yatesアルゴリズム）
   const shuffleList = (list: WordEntry[]): WordEntry[] => {
     const array = [...list];
@@ -160,7 +162,12 @@ export default function TypingGame() {
         return;
       }
 
-      if (char === currentCommand[inputCharIndex]) {
+      // SQLカテゴリの場合は大文字小文字を区別しない
+      const isCorrectChar = selectedCategory === 'sql' 
+        ? char.toLowerCase() === currentCommand[inputCharIndex].toLowerCase()
+        : char === currentCommand[inputCharIndex];
+
+      if (isCorrectChar) {
         // 正しい文字
         setTyped(prev => prev + char);
         const nextIndex = inputCharIndex + 1;
@@ -171,6 +178,8 @@ export default function TypingGame() {
           setCurrentWordIndex((prev) => (prev + 1) % shuffledList.length);
           setTyped('');
           setInputCharIndex(0);
+          setInputStatus('success');
+          setTimeout(() => setInputStatus('normal'), 300);
         } else {
           // 続けて次の文字へ
           setInputCharIndex(nextIndex);
@@ -179,12 +188,14 @@ export default function TypingGame() {
         // ミスタイプ：ミス + 減点
         setMistakes((prev) => prev + 1);
         setScore((prev) => Math.max(0, prev - MISS_PENALTY));
+        setInputStatus('error');
+        setTimeout(() => setInputStatus('normal'), 300);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentCommand, inputCharIndex, gameStarted, isGameOver, shuffledList, typed]);
+  }, [currentCommand, inputCharIndex, gameStarted, isGameOver, shuffledList, typed, selectedCategory]);
 
   const currentCategory = categories[selectedCategory as keyof typeof categories];
 
@@ -265,35 +276,16 @@ export default function TypingGame() {
         </div>
       ) : (
         <>
-          {/* 出題コマンド */}
-          <div className="mb-6">
-            <p className="text-lg mb-2 text-gray-700 font-medium">タイプしてください:</p>
-            <h2 className="text-4xl font-bold text-blue-700 mb-4 font-mono">{currentCommand}</h2>
-
-            {/* コマンドの説明 */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <div className="flex items-start gap-2">
-                <Target className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {currentEntry?.description}
-                </p>
-              </div>
-            </div>
-          </div>
-
           {/* タイピング入力表示エリア */}
           <div className="mb-6">
-            <p className="text-gray-700 mb-2 font-medium">入力状況:</p>
-            <div className="min-h-[80px] p-6 border-2 rounded-lg font-mono text-2xl bg-gray-50 border-blue-300 shadow-inner">
-              {typed ? (
-                <div>
-                  <span className="text-green-600 bg-green-100 px-1 rounded">{typed}</span>
-                  <span className="animate-pulse text-blue-500 text-3xl">|</span>
-                  <span className="text-gray-400">{currentCommand.slice(typed.length)}</span>
-                </div>
-              ) : (
-                <span className="text-gray-400 italic text-lg">キーボードで入力してください...</span>
-              )}
+            <div
+              className={`min-h-[80px] p-6 rounded-lg font-mono text-2xl shadow-inner transition-colors duration-200 border-2
+                ${inputStatus === 'success' ? 'bg-green-50 border-green-400' : inputStatus === 'error' ? 'bg-red-50 border-red-400' : 'bg-gray-50 border-blue-300'}`}
+            >
+              <span>
+                <span className="text-green-600 bg-green-100 px-1 rounded">{typed}</span>
+                <span className="text-gray-400">{currentCommand.slice(typed.length)}</span>
+              </span>
             </div>
           </div>
 
