@@ -1,5 +1,4 @@
 import TypingGame from './components/TypingGame';
-import Link from 'next/link';
 
 export default function Page() {
   return (

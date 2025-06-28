@@ -144,12 +144,6 @@ export default function TypingGame() {
     : displayRomajiCommand;
   // 判定用ローマ字（母音も許容）
   const romajiCommand = isJapaneseCategory ? wanakana.toRomaji(currentCommand ?? '') : currentCommand ?? '';
-  const altRomajiCommand = isJapaneseCategory
-    ? romajiCommand.replace(/-/g, (_, offset) => {
-        const prev = romajiCommand[offset - 1];
-        return prev && 'aeiou'.includes(prev) ? prev : '';
-      })
-    : romajiCommand;
 
   // タイマー処理：1秒ごとに残り時間を更新
   useEffect(() => {
@@ -176,6 +170,11 @@ export default function TypingGame() {
       
       const char = e.key;
       
+      // スペースキーでスクロールするのを防ぐ
+      if (char === ' ') {
+        e.preventDefault();
+      }
+      
       // 特殊キーは無視（ただしBackspaceは除く）
       if (char.length > 1 && char !== 'Backspace') return;
       
@@ -191,7 +190,6 @@ export default function TypingGame() {
       if (isJapaneseCategory) {
         // ローマ字で進捗判定（長音は-または母音どちらでもOK、大文字小文字区別なし）
         const nextTyped = (typed + char).toLowerCase();
-        const expected = displayRomajiCommand.slice(0, nextTyped.length).toLowerCase();
         let isCorrect = true;
         for (let i = 0; i < nextTyped.length; i++) {
           if (displayRomajiCommand[i] === '-') {
@@ -260,7 +258,7 @@ export default function TypingGame() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentCommand, inputCharIndex, gameStarted, isGameOver, shuffledList, typed, selectedCategory]);
+  }, [currentCommand, inputCharIndex, gameStarted, isGameOver, shuffledList, typed, selectedCategory, displayRomajiCommand, isJapaneseCategory]);
 
   const currentCategory = categories[selectedCategory as keyof typeof categories];
 
