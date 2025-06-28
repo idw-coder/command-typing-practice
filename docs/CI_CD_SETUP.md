@@ -112,7 +112,7 @@ jobs:
           server-dir: /command-typing-practice/
 ```
 
-### ✅ ステップ4: 動作確認
+### ステップ4: 動作確認
 
 1. **mainブランチにプッシュ**
    ```bash
