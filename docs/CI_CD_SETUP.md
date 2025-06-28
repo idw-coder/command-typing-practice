@@ -68,6 +68,9 @@ sequenceDiagram
 
 ### ⚙️ ステップ3: GitHub Actions ワークフロー追加
 
+<a href="https://github.com/SamKirkland/FTP-Deploy-Action" action="blank">https://github.com/SamKirkland/FTP-Deploy-Action</a>
+が公開してるActionを使ってます
+
 1. **`.github/workflows/deploy.yml` ファイルを作成**
 2. **以下の内容を追加**
 
@@ -85,7 +88,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
