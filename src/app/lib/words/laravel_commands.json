@@ -1,0 +1,82 @@
+[
+  {
+    "command": "php artisan serve",
+    "description": "Laravelアプリケーションの開発サーバーを起動します。デフォルトでhttp://localhost:8000でアクセス可能になります。"
+  },
+  {
+    "command": "php artisan make:controller",
+    "description": "新しいコントローラーを作成します。--resourceオプションでRESTfulなメソッドを含むコントローラーを生成できます。"
+  },
+  {
+    "command": "php artisan make:model",
+    "description": "新しいEloquentモデルを作成します。-mオプションでマイグレーションファイルも同時に作成できます。"
+  },
+  {
+    "command": "php artisan make:migration",
+    "description": "新しいデータベースマイグレーションファイルを作成します。テーブルの作成や変更を管理するためのファイルを生成します。"
+  },
+  {
+    "command": "php artisan migrate",
+    "description": "未実行のマイグレーションをすべて実行します。データベーススキーマを最新の状態に更新します。"
+  },
+  {
+    "command": "php artisan migrate:rollback",
+    "description": "最後のマイグレーションをロールバックします。--stepオプションで巻き戻すマイグレーションの数を指定できます。"
+  },
+  {
+    "command": "php artisan migrate:refresh",
+    "description": "すべてのマイグレーションをロールバックしてから再実行します。データベースを完全にリセットして再構築します。"
+  },
+  {
+    "command": "php artisan make:seeder",
+    "description": "新しいデータベースシーダーを作成します。テストデータやサンプルデータを挿入するクラスを生成します。"
+  },
+  {
+    "command": "php artisan db:seed",
+    "description": "データベースシーダーを実行します。--classオプションで特定のシーダークラスを指定して実行できます。"
+  },
+  {
+    "command": "php artisan make:middleware",
+    "description": "新しいミドルウェアを作成します。HTTPリクエストの前後で処理を実行するクラスを生成します。"
+  },
+  {
+    "command": "php artisan make:request",
+    "description": "新しいフォームリクエストを作成します。バリデーションルールと認可ロジックを含むクラスを生成します。"
+  },
+  {
+    "command": "php artisan make:resource",
+    "description": "新しいAPIリソースを作成します。EloquentモデルをJSONに変換するためのリソースクラスを生成します。"
+  },
+  {
+    "command": "php artisan route:list",
+    "description": "アプリケーションで定義されているすべてのルートを一覧表示します。URI、メソッド、アクション、ミドルウェアを確認できます。"
+  },
+  {
+    "command": "php artisan config:cache",
+    "description": "設定ファイルをキャッシュして読み込みを高速化します。本番環境でのパフォーマンス向上のために使用します。"
+  },
+  {
+    "command": "php artisan cache:clear",
+    "description": "アプリケーションキャッシュをクリアします。設定やビューのキャッシュをクリアしてフレッシュな状態にします。"
+  },
+  {
+    "command": "php artisan queue:work",
+    "description": "キューワーカーを起動して、キューに追加されたジョブを処理します。バックグラウンドタスクの実行に使用します。"
+  },
+  {
+    "command": "php artisan make:job",
+    "description": "新しいジョブクラスを作成します。キューで実行される非同期処理を定義するクラスを生成します。"
+  },
+  {
+    "command": "php artisan tinker",
+    "description": "Laravelアプリケーションの対話型シェルを起動します。モデルやサービスを直接テストできます。"
+  },
+  {
+    "command": "php artisan make:command",
+    "description": "新しいArtisanコマンドを作成します。カスタムCLIコマンドを定義するクラスを生成します。"
+  },
+  {
+    "command": "php artisan storage:link",
+    "description": "storageディレクトリへのシンボリックリンクをpublicディレクトリに作成します。ファイルストレージの公開アクセスを有効にします。"
+  }
+]

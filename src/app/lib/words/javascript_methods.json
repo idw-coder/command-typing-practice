@@ -1,0 +1,282 @@
+[
+  {
+    "command": "let variable",
+    "description": "ブロックスコープを持つ変数を宣言します。再代入可能で、ホイスティングされません。"
+  },
+  {
+    "command": "const variable",
+    "description": "ブロックスコープを持つ定数を宣言します。再代入不可で、オブジェクトのプロパティは変更可能です。"
+  },
+  {
+    "command": "var variable",
+    "description": "関数スコープを持つ変数を宣言します。再代入可能で、ホイスティングされます（非推奨）。"
+  },
+  {
+    "command": "async function()",
+    "description": "非同期関数を定義します。Promiseを返し、内部でawaitキーワードを使用できます。"
+  },
+  {
+    "command": "await promise",
+    "description": "Promiseの完了を待機し、結果値を取得します。async関数内でのみ使用可能です。"
+  },
+  {
+    "command": "fetch(url)",
+    "description": "HTTPリクエストを送信し、Promiseを返します。APIとの通信に使用され、Responseオブジェクトを返します。"
+  },
+  {
+    "command": "Promise.resolve()",
+    "description": "成功状態のPromiseを作成します。値をラップしてPromiseオブジェクトを返します。"
+  },
+  {
+    "command": "Promise.reject()",
+    "description": "失敗状態のPromiseを作成します。エラーをラップしてPromiseオブジェクトを返します。"
+  },
+  {
+    "command": "Promise.all()",
+    "description": "複数のPromiseを並行実行し、すべてが完了したら結果の配列を返します。一つでも失敗すると全体が失敗します。"
+  },
+  {
+    "command": "Promise.race()",
+    "description": "複数のPromiseのうち、最初に完了したものの結果を返します。競合状態の処理に使用します。"
+  },
+  {
+    "command": "Array.map()",
+    "description": "配列の各要素に対して関数を実行し、その結果から新しい配列を作成します。元の配列は変更されません。"
+  },
+  {
+    "command": "Array.filter()",
+    "description": "配列の要素をテスト関数でフィルタリングし、条件を満たす要素のみの新しい配列を返します。"
+  },
+  {
+    "command": "Array.reduce()",
+    "description": "配列の要素を累積して単一の値にまとめます。合計計算やオブジェクトの変換などに使用します。"
+  },
+  {
+    "command": "Array.forEach()",
+    "description": "配列の各要素に対して指定した関数を実行します。戻り値はundefinedで、主に副作用のために使用します。"
+  },
+  {
+    "command": "Array.find()",
+    "description": "配列内で指定した条件を満たす最初の要素を返します。条件を満たす要素がない場合はundefinedを返します。"
+  },
+  {
+    "command": "Array.findIndex()",
+    "description": "配列内で指定した条件を満たす最初の要素のインデックスを返します。見つからない場合は-1を返します。"
+  },
+  {
+    "command": "Array.includes()",
+    "description": "配列が特定の要素を含んでいるかを判定し、真偽値を返します。厳密等価演算子（===）で比較します。"
+  },
+  {
+    "command": "Array.some()",
+    "description": "配列の少なくとも1つの要素が指定した条件を満たすかを判定し、真偽値を返します。"
+  },
+  {
+    "command": "Array.every()",
+    "description": "配列のすべての要素が指定した条件を満たすかを判定し、真偽値を返します。"
+  },
+  {
+    "command": "Array.push()",
+    "description": "配列の末尾に1つ以上の要素を追加し、新しい配列の長さを返します。元の配列を変更します。"
+  },
+  {
+    "command": "Array.pop()",
+    "description": "配列の最後の要素を削除し、その要素を返します。配列が空の場合はundefinedを返します。"
+  },
+  {
+    "command": "Array.shift()",
+    "description": "配列の最初の要素を削除し、その要素を返します。残りの要素のインデックスは1つずつ前に移動します。"
+  },
+  {
+    "command": "Array.unshift()",
+    "description": "配列の先頭に1つ以上の要素を追加し、新しい配列の長さを返します。既存の要素のインデックスは後ろに移動します。"
+  },
+  {
+    "command": "Array.slice()",
+    "description": "配列の一部を浅いコピーで抽出します。開始と終了のインデックスを指定し、元の配列は変更されません。"
+  },
+  {
+    "command": "Array.splice()",
+    "description": "配列の要素を削除・追加・置換します。元の配列を変更し、削除された要素の配列を返します。"
+  },
+  {
+    "command": "Array.sort()",
+    "description": "配列の要素をソートします。比較関数を指定可能で、元の配列を変更します。"
+  },
+  {
+    "command": "Array.reverse()",
+    "description": "配列の要素の順序を逆転させます。元の配列を変更し、逆転した配列を返します。"
+  },
+  {
+    "command": "Object.keys()",
+    "description": "オブジェクトの列挙可能なプロパティ名の配列を返します。プロパティの順序は定義順になります。"
+  },
+  {
+    "command": "Object.values()",
+    "description": "オブジェクトの列挙可能なプロパティ値の配列を返します。Object.keys()と対になるメソッドです。"
+  },
+  {
+    "command": "Object.entries()",
+    "description": "オブジェクトの列挙可能なプロパティを[key, value]ペアの配列として返します。Map()への変換などに使用します。"
+  },
+  {
+    "command": "Object.assign()",
+    "description": "1つ以上のソースオブジェクトからターゲットオブジェクトにプロパティをコピーします。浅いコピーを実行します。"
+  },
+  {
+    "command": "Object.freeze()",
+    "description": "オブジェクトを凍結し、プロパティの追加・削除・変更を防ぎます。ネストしたオブジェクトは再帰的に凍結されません。"
+  },
+  {
+    "command": "Object.seal()",
+    "description": "オブジェクトを封印し、プロパティの追加・削除を防ぎます。既存のプロパティの値は変更可能です。"
+  },
+  {
+    "command": "JSON.stringify()",
+    "description": "JavaScriptの値をJSON文字列に変換します。オブジェクトや配列をサーバーに送信する際によく使用します。"
+  },
+  {
+    "command": "JSON.parse()",
+    "description": "JSON文字列を解析してJavaScriptの値やオブジェクトを生成します。APIからのレスポンス処理に使用します。"
+  },
+  {
+    "command": "String.split()",
+    "description": "文字列を指定した区切り文字で分割し、文字列の配列を返します。CSVデータの処理などに使用します。"
+  },
+  {
+    "command": "String.join()",
+    "description": "配列の全要素を指定した区切り文字で連結し、1つの文字列として返します。split()の逆の操作です。"
+  },
+  {
+    "command": "String.trim()",
+    "description": "文字列の両端の空白文字を削除した新しい文字列を返します。ユーザー入力の正規化によく使用します。"
+  },
+  {
+    "command": "String.toLowerCase()",
+    "description": "文字列のすべての文字を小文字に変換した新しい文字列を返します。大文字小文字を区別しない比較に使用します。"
+  },
+  {
+    "command": "String.toUpperCase()",
+    "description": "文字列のすべての文字を大文字に変換した新しい文字列を返します。定数や識別子の統一に使用します。"
+  },
+  {
+    "command": "String.replace()",
+    "description": "文字列内の最初の一致を新しい文字列で置換します。正規表現や関数も使用可能です。"
+  },
+  {
+    "command": "String.replaceAll()",
+    "description": "文字列内のすべての一致を新しい文字列で置換します。ES2021で追加されたメソッドです。"
+  },
+  {
+    "command": "String.startsWith()",
+    "description": "文字列が指定した文字列で始まるかを判定し、真偽値を返します。大文字小文字は区別されます。"
+  },
+  {
+    "command": "String.endsWith()",
+    "description": "文字列が指定した文字列で終わるかを判定し、真偽値を返します。大文字小文字は区別されます。"
+  },
+  {
+    "command": "String.includes()",
+    "description": "文字列が指定した部分文字列を含んでいるかを判定し、真偽値を返します。大文字小文字は区別されます。"
+  },
+  {
+    "command": "String.indexOf()",
+    "description": "文字列内で指定した部分文字列が最初に出現する位置のインデックスを返します。見つからない場合は-1を返します。"
+  },
+  {
+    "command": "String.substring()",
+    "description": "文字列の指定した範囲の部分文字列を返します。開始と終了のインデックスを指定し、元の文字列は変更されません。"
+  },
+  {
+    "command": "String.slice()",
+    "description": "文字列の指定した範囲の部分文字列を返します。負のインデックスも使用可能で、substring()より柔軟です。"
+  },
+  {
+    "command": "parseInt()",
+    "description": "文字列を整数に変換します。基数を指定可能で、数値以外の文字が含まれる場合は最初の数値部分のみ変換します。"
+  },
+  {
+    "command": "parseFloat()",
+    "description": "文字列を浮動小数点数に変換します。小数点を含む数値文字列を変換し、数値以外の文字が含まれる場合は最初の数値部分のみ変換します。"
+  },
+  {
+    "command": "Number.isNaN()",
+    "description": "値がNaN（Not a Number）かどうかを判定します。グローバルのisNaN()より厳密で、型変換を行いません。"
+  },
+  {
+    "command": "Number.isFinite()",
+    "description": "値が有限数かどうかを判定します。グローバルのisFinite()より厳密で、型変換を行いません。"
+  },
+  {
+    "command": "Math.random()",
+    "description": "0以上1未満の擬似乱数を返します。暗号学的に安全ではないため、セキュリティが必要な場合はcrypto.getRandomValues()を使用します。"
+  },
+  {
+    "command": "Math.floor()",
+    "description": "数値を切り下げて整数を返します。小数点以下を削除し、最も近い小さい整数を返します。"
+  },
+  {
+    "command": "Math.ceil()",
+    "description": "数値を切り上げて整数を返します。小数点以下がある場合、最も近い大きい整数を返します。"
+  },
+  {
+    "command": "Math.round()",
+    "description": "数値を四捨五入して整数を返します。小数点以下が0.5以上の場合は切り上げ、それ以外は切り下げます。"
+  },
+  {
+    "command": "Math.max()",
+    "description": "指定された数値の中で最大値を返します。配列の最大値を取得する場合はスプレッド演算子と組み合わせて使用します。"
+  },
+  {
+    "command": "Math.min()",
+    "description": "指定された数値の中で最小値を返します。配列の最小値を取得する場合はスプレッド演算子と組み合わせて使用します。"
+  },
+  {
+    "command": "Date.now()",
+    "description": "現在のタイムスタンプをミリ秒単位で返します。1970年1月1日00:00:00 UTCからの経過時間です。"
+  },
+  {
+    "command": "new Date()",
+    "description": "現在の日時を表すDateオブジェクトを作成します。引数を指定することで特定の日時を表すオブジェクトも作成可能です。"
+  },
+  {
+    "command": "setTimeout()",
+    "description": "指定した時間後にコールバック関数を実行します。非同期処理の基本で、タイマーIDを返します。"
+  },
+  {
+    "command": "setInterval()",
+    "description": "指定した間隔でコールバック関数を繰り返し実行します。定期的な処理に使用し、タイマーIDを返します。"
+  },
+  {
+    "command": "clearTimeout()",
+    "description": "setTimeout()で設定されたタイマーをキャンセルします。タイマーIDを引数として受け取ります。"
+  },
+  {
+    "command": "clearInterval()",
+    "description": "setInterval()で設定されたタイマーをキャンセルします。タイマーIDを引数として受け取ります。"
+  },
+  {
+    "command": "localStorage.setItem()",
+    "description": "ブラウザのローカルストレージにキーと値のペアを保存します。文字列として保存され、ブラウザを閉じても保持されます。"
+  },
+  {
+    "command": "localStorage.getItem()",
+    "description": "ローカルストレージから指定したキーの値を取得します。キーが存在しない場合はnullを返します。"
+  },
+  {
+    "command": "localStorage.removeItem()",
+    "description": "ローカルストレージから指定したキーとその値を削除します。キーが存在しない場合は何も起こりません。"
+  },
+  {
+    "command": "sessionStorage.setItem()",
+    "description": "ブラウザのセッションストレージにキーと値のペアを保存します。タブを閉じると削除されます。"
+  },
+  {
+    "command": "sessionStorage.getItem()",
+    "description": "セッションストレージから指定したキーの値を取得します。キーが存在しない場合はnullを返します。"
+  },
+  {
+    "command": "sessionStorage.removeItem()",
+    "description": "セッションストレージから指定したキーとその値を削除します。キーが存在しない場合は何も起こりません。"
+  }
+]
