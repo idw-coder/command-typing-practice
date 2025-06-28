@@ -244,7 +244,7 @@ git push origin main`}
                 <li><strong>Next.js 15.3.4</strong> - Reactフレームワーク</li>
                 <li><strong>TypeScript</strong> - 型安全性</li>
                 <li><strong>Tailwind CSS</strong> - スタイリング</li>
-                <li><strong>静的エクスポート</strong> - <code className="bg-gray-100 px-1 rounded">output: 'export'</code> でSSG</li>
+                <li><strong>静的エクスポート</strong> - <code className="bg-gray-100 px-1 rounded">output: &apos;export&apos;</code> でSSG</li>
               </ul>
             </div>
 
