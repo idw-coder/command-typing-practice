@@ -112,6 +112,8 @@ jobs:
           server-dir: /command-typing-practice/
 ```
 
+server-dirはサブディレクトリにデプロイしてる場合は適宜変更が必要です
+
 ### ステップ4: 動作確認
 
 1. **mainブランチにプッシュ**
