@@ -12,6 +12,7 @@ import laravelCommands from '../lib/words/laravel_commands.json';
 import phpFunctions from '../lib/words/php_functions.json';
 import sqlCommands from '../lib/words/sql_commands.json';
 import marketingTerms from '../lib/words/marketing_terms.json';
+import wordpressFunctions from '../lib/words/wordpress_functions.json';
 
 // データ型の定義
 type WordEntry = {
@@ -62,6 +63,12 @@ const categories = {
     icon: TrendingUp,
     data: marketingTerms as WordEntry[],
     color: 'bg-pink-100 border-pink-300 text-pink-800'
+  },
+  wordpress: {
+    name: 'WordPress',
+    icon: Code,
+    data: wordpressFunctions as WordEntry[],
+    color: 'bg-indigo-100 border-indigo-300 text-indigo-800'
   }
 };
 
