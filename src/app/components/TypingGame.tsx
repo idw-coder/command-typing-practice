@@ -134,6 +134,7 @@ export default function TypingGame() {
   // 現在の出題データ
   const currentEntry = shuffledList[currentWordIndex];
   const currentCommand = currentEntry?.command ?? '';
+  const currentDescription = currentEntry?.description ?? '';
 
   // 表示用ローマ字（長音は必ず'-'、連続母音も'-'に置換）
   let displayRomajiCommand = isJapaneseCategory
@@ -351,17 +352,29 @@ export default function TypingGame() {
                       <span className="text-gray-400">{displayRomajiCommand.slice(typed.length)}</span>
                     </span>
                   </div>
+                {currentDescription && (
+                  <div className="text-sm text-gray-600 mt-2 text-center italic">
+                    {currentDescription}
+                  </div>
+                )}
               </>
             ) : (
-              <div
-                className={`min-h-[80px] p-6 rounded-lg font-mono text-2xl shadow-inner transition-colors duration-200 border-2
-                  ${inputStatus === 'success' ? 'bg-green-50 border-green-400' : inputStatus === 'error' ? 'bg-red-50 border-red-400' : 'bg-gray-50 border-blue-300'}`}
-              >
-                <span>
-                  <span className="text-green-600 bg-green-100 px-1 rounded">{typed}</span>
-                  <span className="text-gray-400">{currentCommand.slice(typed.length)}</span>
-                </span>
-              </div>
+              <>
+                <div
+                  className={`min-h-[80px] p-6 rounded-lg font-mono text-2xl shadow-inner transition-colors duration-200 border-2
+                    ${inputStatus === 'success' ? 'bg-green-50 border-green-400' : inputStatus === 'error' ? 'bg-red-50 border-red-400' : 'bg-gray-50 border-blue-300'}`}
+                >
+                  <span>
+                    <span className="text-green-600 bg-green-100 px-1 rounded">{typed}</span>
+                    <span className="text-gray-400">{currentCommand.slice(typed.length)}</span>
+                  </span>
+                </div>
+                {currentDescription && (
+                  <div className="text-sm text-gray-600 mt-2 text-center italic">
+                    {currentDescription}
+                  </div>
+                )}
+              </>
             )}
           </div>
 
