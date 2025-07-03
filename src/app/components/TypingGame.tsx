@@ -59,7 +59,7 @@ const categories = {
     color: 'bg-green-100 border-green-300 text-green-800' 
   },
   marketing: {
-    name: 'マーケティング',
+    name: 'マーケティング（準備中）',
     icon: TrendingUp,
     data: marketingTerms as WordEntry[],
     color: 'bg-pink-100 border-pink-300 text-pink-800'
